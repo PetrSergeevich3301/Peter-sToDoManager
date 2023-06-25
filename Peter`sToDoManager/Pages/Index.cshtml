@@ -1,0 +1,13 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Привет!</h1>
+    <p>Воспользуйся моим менеджером контроля задач!</p>
+    <a class="btn btn-primary my-2" asp-page="/ViewAllTasks">Мои задачи</a>
+    <br>
+    <a class="btn btn-primary my-2" asp-page="/Create/CreateTask">Создать задачу</a>
+</div>

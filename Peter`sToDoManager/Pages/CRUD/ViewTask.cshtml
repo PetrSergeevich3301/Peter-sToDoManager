@@ -1,0 +1,35 @@
+﻿@page
+@model Peter_sToDoManager.Pages.ViewTaskModel
+@{
+}
+@if(Model.task.Deleted)
+{
+    <div class="alert-danger">
+        <h4>Задача удалена</h4>
+        <a asp-page="./ViewTask"
+       asp-page-handler="Recover" asp-route-id="@Model.task.Id" class="btn btn-outline-dark">
+            Восстановить
+        </a>
+    </div>
+}
+<h1>@Model.task.Name</h1>
+@if (Model.task.Matter)
+{
+    <h5 class="alert-info">Важная задача</h5>
+}
+<h3>Описание задачи:</h3>
+<p>@Model.task.Description</p>
+<h3>Выполнить до: @Model.task.Time</h3>
+@if(Model.task.steps != null)
+{
+<h3>Этапы выполнения:</h3>
+<ul>
+    @foreach(var step in Model.task.steps)
+    {
+        <li>@step</li>
+    }
+</ul>
+    
+}
+<h4>Добавить этап</h4>
+

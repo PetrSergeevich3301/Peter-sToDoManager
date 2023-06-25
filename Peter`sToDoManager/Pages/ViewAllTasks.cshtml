@@ -1,0 +1,113 @@
+﻿@page
+@model Peter_sToDoManager.Pages.ViewTasksModel
+@{
+}
+<h1>Текущие задачи</h1>
+<div class="row">
+    @foreach (var task in Model.Tasks)
+    {
+        <div class="task col-4 mb-5" data-bs-theme="light">
+            <div>
+                <h4>@task.Name</h4>
+                @*<p>@task.Description</p>*@
+                <h5>Срок: @task.Time</h5>
+                @if (task.Matter)
+                {
+                    <h5 class="matter-label">Важное</h5>
+                }
+                <div class="btns">
+                    <a asp-page="./CRUD/ViewTask"
+                   asp-page-handler="Task"
+                   asp-route-id="@task.Id"
+                       class="btn btn-outline-info">Подробнее</a>
+
+
+                    <a asp-page="./CRUD/CompleteTask"
+                   asp-page-handler="Complete"
+                   asp-route-id="@task.Id"
+                       class="btn btn-outline-success">
+                        <img src="~/Images/Icons/CompleteIcon.svg" width="30px">
+                    </a>
+                    
+                    <a asp-page="./CRUD/EditTask"
+                   asp-page-handler="Complete"
+                   asp-route-id="@task.Id"
+                       class="btn btn-outline-success">
+                        <img src="~/Images/Icons/EditIcon.svg" width="30px">
+                    </a>
+
+
+                    <a asp-page="./CRUD/DeleteTask"
+                       onclick="return confirm('Действительно хотите удалить эту запись?');"
+                   asp-page-handler="Delete"
+                   asp-route-id="@task.Id"
+                       class="btn btn-outline-warning">
+                        <img src="~/Images/Icons/DeleteIcon.svg" width="30px">
+                    </a>
+
+
+                </div>
+            </div>
+
+
+            <!--<div class="icons">
+                <a asp-page="./ViewTasks"
+                onclick="return confirm('Действительно хотите удалить эту запись?');"
+                asp-page-handler="Delete" asp-route-id="@task.Id" class="btn btn-outline-warning">
+                    <img src="~/Images/Icons/DeleteIcon.svg" width="50px">
+                </a>
+                <a asp-page="./ViewTasks"
+                asp-page-handler="Complete" asp-route-id="@task.Id" class="btn btn-outline-dark">
+                    Complete
+                </a>
+            </div>-->
+        </div>
+    }
+</div>
+
+<h1>Выполненные задачи</h1>
+<div class="row">
+
+    @foreach (var task in Model.CompletedTasks)
+    {
+        <div class="task col-4 mb-5" data-bs-theme="light">
+            <div>
+                <h4>@task.Name</h4>
+                @*<p>@task.Description</p>*@
+                <h5>Срок: @task.Time</h5>
+                @if (task.Matter)
+                {
+                    <h5 class="matter-label">Важное</h5>
+                }
+                <div class="btns">
+                    <a asp-page="./ViewTask"
+                   asp-page-handler="Task"
+                   asp-route-id="@task.Id"
+                       class="btn btn-outline-success">Подробнее</a>
+
+                    <a asp-page="./ViewAllTasks"
+                       onclick="return confirm('Действительно хотите удалить эту запись?');"
+                   asp-page-handler="Delete"
+                   asp-route-id="@task.Id"
+                       class="btn btn-outline-warning">
+                        <img src="~/Images/Icons/DeleteIcon.svg" width="20px">
+                    </a>
+
+
+                </div>
+
+            </div>
+            <!--<div class="icons">
+                <a asp-page="./ViewTasks"
+                onclick="return confirm('Действительно хотите удалить эту запись?');"
+                asp-page-handler="Delete" asp-route-id="@task.Id" class="btn btn-outline-warning">
+                    <img src="~/Images/Icons/DeleteIcon.svg" width="50px">
+                </a>
+                <a asp-page="./ViewTasks"
+                asp-page-handler="Complete" asp-route-id="@task.Id" class="btn btn-outline-dark">
+                    Complete
+                </a>
+            </div>-->
+        </div>
+    }
+</div>
